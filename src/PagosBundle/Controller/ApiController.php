@@ -77,7 +77,7 @@ class ApiController extends Controller
 				$response =  new JsonResponse($payment->getData(),200);
 			} catch (\Exception $e) {
 				if (strpos($e->getMessage(), 'Integrity constraint violation')) {
-					$error = "There is already a payment with the following unique data external_reference => ".$data->external_reference." y payment_method =>  ".$data->payment_method;
+					$error = "There is already a payment with the following unique data external_reference => ".$data->external_reference." and payment_method =>  ".$data->payment_method;
 				}else {
 					$error = 'We are having problems. Please try again later';
 				}
@@ -103,7 +103,7 @@ class ApiController extends Controller
 		 
 		if ($id == null) {
 			$status = 400;
-			$out = $this->exceptionRequest($status, "Falta el ID en la petición de PATCH de pago. Ejemplo -> payments/22");
+			$out = $this->exceptionRequest($status, "The ID is missing from the PATCH request for payment. Example -> payments/22");
 		} else {
 	
 			$em = $this->getDoctrine()->getManager();
@@ -144,7 +144,7 @@ class ApiController extends Controller
 	}
 	
 	/**
-	 * Get All Payment and  Get Payment by ( Company,Payment Method, Payment Date From and Payment Date Until )
+	 * Get All Payment and  Get Payment by ( Company, Payment Date From and Payment Date Until )
 	 *
 	 * @param Request $request
 	 * @return JsonResponse
@@ -169,7 +169,7 @@ class ApiController extends Controller
 					$out = $this->exceptionRequest($status, "Error validating fields: company does not exist.");
 				}elseif ($array_filter['payment_date_until'] < $array_filter['payment_date_from']) {
 					$status = 400;
-					$out = $this->exceptionRequest($status, "La fecha final tiene que ser mayor a la fecha inicial");
+					$out = $this->exceptionRequest($status, "The payment_date_until must be greater than the payment_date_from");
 				} else {
 					$payments_records = $rep_payment->findPaymentByCompanyRangeDate($company_data,$array_filter['payment_date_from'],$array_filter['payment_date_until']);
 										
@@ -208,7 +208,7 @@ class ApiController extends Controller
 		
 		if (count($items) === 0) {
 			$status = 400;
-			$out = $this->exceptionRequest($status, "No se encontraron pagos con la búsqueda realizada");
+			$out = $this->exceptionRequest($status, "No payments were found with the search performed.");
 				
 		} else {			
 			
