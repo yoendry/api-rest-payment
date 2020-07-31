@@ -17,10 +17,10 @@ Configure your database connection information.It is configured in the api-rest-
 
 parameters:
 
-    database_host:     localhost    
-    database_name:     challenge_payment    
-    database_user:     root
-    database_password: password
+    database_host:     <your_host>    
+    database_name:     <your_database_name>    
+    database_user:     <your_user>
+    database_password: <your_password>
 
 Later execute :
 
