@@ -6,9 +6,12 @@ Api Rest that allows to register payments from different companies.
 # Installation instructions:
 
 1.Open a terminal.
+
 2.Run the commands below:
 
+
 git clone https://github.com/yoendry/api-rest-payment.git
+
 
 cd api-rest-payment
 
