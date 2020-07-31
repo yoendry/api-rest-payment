@@ -9,11 +9,9 @@ Api Rest that allows to register payments from different companies.
 
 2.Run the commands below:
 
-
-git clone https://github.com/yoendry/api-rest-payment.git
-
-
-cd api-rest-payment
+    git clone https://github.com/yoendry/api-rest-payment.git
+    
+    cd api-rest-payment
 
 Configure your database connection information.It is configured in the api-rest-payment/app/config/parameters.yml file:
 
@@ -26,12 +24,12 @@ parameters:
 
 Later execute :
 
-php bin/console doctrine:database:create
+    php bin/console doctrine:database:create
 
-php bin/console doctrine:query:sql "$(< insert_data.sql)"
+    php bin/console doctrine:query:sql "$(< insert_data.sql)"
 
-php bin/console server:run
+    php bin/console server:run
 
 # Site url
 
-http://localhost:8000
+    http://localhost:8000
