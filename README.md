@@ -18,8 +18,9 @@ cd api-rest-payment
 Configure your database connection information.It is configured in the api-rest-payment/app/config/parameters.yml file:
 
 parameters:
-    database_host:     localhost
-    database_name:     challenge_payment
+
+    database_host:     localhost    
+    database_name:     challenge_payment    
     database_user:     root
     database_password: password
 
