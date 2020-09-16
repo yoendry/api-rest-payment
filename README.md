@@ -25,7 +25,9 @@ parameters:
 Later execute :
 
     php bin/console doctrine:database:create
-
+    
+    php bin/console doctrine:schema:update --force
+    
     php bin/console doctrine:query:sql "$(< insert_data.sql)"
 
     php bin/console server:run
