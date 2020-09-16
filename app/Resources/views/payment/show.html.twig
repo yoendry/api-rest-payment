@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h3>Pago: {{ payment.id }} </h3>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ payment.id }}</td>
+            </tr>
+            <tr>
+                <th>Fecha de pago</th>
+                <td>{% if payment.paymentDate %}{{ payment.paymentDate|date('d/m/Y') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Compañía</th>
+                <td>{{ payment.company }}</td>
+            </tr>
+            <tr>
+                <th>Monto</th>
+                <td>{{ payment.amount }}</td>
+            </tr>
+            <tr>
+                <th>Método de Pago</th>
+                <td>{{ payment.paymentMethod }}</td>
+            </tr>
+            <tr>
+                <th>Referencia Externa</th>
+                <td>{{ payment.externalReference }}</td>
+            </tr>
+            <tr>
+                <th>Terminal</th>
+                <td>{{ payment.terminal }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{{ payment.status }}</td>
+            </tr>
+            <tr>
+                <th>Referencia</th>
+                <td>{{ payment.reference }}</td>
+            </tr>
+        </tbody>
+    </table>
+	<a href="{{ path('payment_index')}}" class="btn btn-info">Volver</a>
+	<a href="{{ path('payment_edit', { 'id': payment.id }) }}" class="btn btn-success">Editar</a>
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+    <h3>Cambiar Estado de Pago: {{ payment.id }}</h3>
+
+    {{ form_start(edit_form) }}
+        {% block form_row %}
+	    <div class="form-group">
+		{{ form_label(edit_form.status) }}
+		{{ form_errors(edit_form.status) }}
+		{{ form_widget(edit_form.status, { 'attr': {'class': 'selectpicker'} }) }}
+	    </div>
+	{% endblock form_row %}
+        <input type="submit" value="Actualizar" class="btn btn-success"/>
+    {{ form_end(edit_form.status) }}
+</div>
+{% endblock %}

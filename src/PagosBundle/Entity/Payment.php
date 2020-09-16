@@ -27,7 +27,6 @@ class Payment
      * @var \DateTime
      *
      * @ORM\Column(name="payment_date", type="datetime")
-     * @Assert\NotBlank(message = "The field paymentDate should not be blank.")
      * @Assert\DateTime(format = "Y-m-d\TH:i:sP")
      */
     private $paymentDate;
@@ -44,7 +43,6 @@ class Payment
      * @var int
      *
      * @ORM\Column(name="amount", type="integer")
-     * @Assert\NotBlank(message = "The field amount should not be blank.")
      * @Assert\Type(
      *     type="integer",
      *     message="Error validating fields: amount is not of the valid type."
@@ -64,7 +62,6 @@ class Payment
      * @var string 
      *
      * @ORM\Column(name="external_reference", type="string", length=255)
-     * @Assert\NotBlank(message = "The field externalReference should not be blank.")
      */
     private $externalReference;
 
@@ -72,7 +69,6 @@ class Payment
      * @var string
      *
      * @ORM\Column(name="terminal", type="string", length=255)
-     * @Assert\NotBlank(message = "The field terminal should not be blank.")
      */
     private $terminal;
 
@@ -89,7 +85,6 @@ class Payment
      * @var string
      *
      * @ORM\Column(name="reference", type="string", length=255)
-     * @Assert\NotBlank(message = "The field reference should not be blank.")
      */
     private $reference;
 
@@ -149,7 +144,7 @@ class Payment
      */
     public function getCompany()
     {
-        return $this->company->__toString();
+        return $this->company;
     }
 
     /**
@@ -197,7 +192,7 @@ class Payment
      */
     public function getPaymentMethod()
     {
-        return $this->paymentMethod->__toString();
+        return $this->paymentMethod;
     }
 
     /**
@@ -269,7 +264,7 @@ class Payment
      */
     public function getStatus()
     {
-        return $this->status->__toString();
+        return $this->status;
     }
 
     /**

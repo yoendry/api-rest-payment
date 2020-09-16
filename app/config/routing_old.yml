@@ -1,0 +1,24 @@
+pagos_payment:
+    resource: "@PagosBundle/Controller/PaymentController.php"
+    type:     annotation
+    
+api_payments_crear:
+    path:      /payments
+    defaults:  { _controller: PagosBundle:Api:createpayment }
+    methods: [POST]
+
+api_payments_update:
+    path:      /payments/{id}
+    defaults:  { _controller: PagosBundle:Api:updatePaymentById,id:null }
+    methods: [PATCH]
+
+api_payments_obtener_payments:
+    path:      /payments
+    defaults:  { _controller: PagosBundle:Api:getpayments }
+    methods: [GET]
+    
+payments_create:
+    path:      /create
+    defaults:  { _controller: PagosBundle:Api:create }
+    methods: [GET]    
+    

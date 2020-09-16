@@ -10,20 +10,29 @@ use Symfony\Component\Validator\Constraints\DateTime;
 use PagosBundle\Entity\Status;
 use PagosBundle\Entity\PaymentMethod;
 use PagosBundle\Entity\Company;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ApiController extends Controller
 {
 	
 	/**
-	 * Create Pyment
-	 *
+	 * Create Pyment	 * 
+     * 
 	 * @param Request $request
 	 * @return JsonResponse
 	 */
 	public function createpaymentAction(Request $request)
 	{
+		var_dump($request->request);exit;
+		if ($form->isSubmitted() && $form->isValid()) {
+			$data = $form->getData();
+			
+		}
 	
-		$em = $this->getDoctrine()->getManager();
+		/*$em = $this->getDoctrine()->getManager();
 		 
 		$status = new Status();
 		$payment = new Payment();
@@ -89,8 +98,9 @@ class ApiController extends Controller
 			$response =  new JsonResponse($this->exceptionRequest(400,$mensaje),400);
 		}
 		 
-		return $response;
+		return $response;*/
 	}
+	
 	
 	/**
 	 * Update Pyment by Id
@@ -143,6 +153,7 @@ class ApiController extends Controller
 		
 	}
 	
+	
 	/**
 	 * Get All Payment and  Get Payment by ( Company, Payment Date From and Payment Date Until )
 	 *
@@ -150,8 +161,23 @@ class ApiController extends Controller
 	 * @return JsonResponse
 	 */
 	public function getpaymentsAction(Request $request)
-	{
-		$em = $this->getDoctrine()->getManager();
+	{	
+		
+		/*$em = $this->getDoctrine()->getManager();
+		
+		$payments = $em->getRepository('PagosBundle:Payment')->findAll();
+		$items = array();
+			
+		foreach ($payments as $payment) {
+			array_push($items, $payment->getData());
+		}
+		
+		return $this->render('payment/index.html.twig', array(
+				'payments' => $items,
+		));
+		
+		
+		/*$em = $this->getDoctrine()->getManager();
 		$rep_payment = $em->getRepository("PagosBundle:Payment");		
 		
 		if ($request->query->count() > 0) {
@@ -220,9 +246,36 @@ class ApiController extends Controller
 			);
 		}
 		
-		return $response =  new JsonResponse($out,$status);		
+		return $response =  new JsonResponse($out,$status);		*/
 	}
     
+	
+	public function createAction()
+	{
+		$payment = new Payment();
+		
+		$form = $this->createFormBuilder($payment)
+		->add('paymentDate', DateType::class)
+		->add('company', EntityType::class,array(
+				'class' => Company::class
+		))
+		->add('amount')
+		->add('paymentMethod', EntityType::class,array(
+				'class' => PaymentMethod::class
+		))
+		->add('terminal')
+		->add('externalReference', TextType::class)
+		->add('status')
+		->add('save', SubmitType::class, array('label' => 'Crear Payment'))
+		->getForm();
+		
+		$form->handleRequest($request);
+		
+		return $this->render('payment/new.html.twig', array(
+				'form' => $form->createView(),
+		));
+	}
+	
     
     private function exceptionRequest($code, $msg=null){
     	return array(
