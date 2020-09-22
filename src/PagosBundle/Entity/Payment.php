@@ -27,7 +27,6 @@ class Payment
      * @var \DateTime
      *
      * @ORM\Column(name="payment_date", type="datetime")
-     * @Assert\DateTime(format = "Y-m-d\TH:i:sP")
      */
     private $paymentDate;
 
@@ -296,7 +295,7 @@ class Payment
      *
      * @return array
      */
-    public function getData()
+    /*public function getData()
     {
     	return array(
     			"id"=> $this->getId(),
@@ -309,6 +308,6 @@ class Payment
     			"terminal"=> $this->getTerminal(),
     			"reference"=> $this->getReference()
     	);
-    }
+    }*/
     
 }
